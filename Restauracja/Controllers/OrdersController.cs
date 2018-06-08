@@ -57,12 +57,24 @@ namespace Restauracja.Controllers
             order.MealTime = null;
             if (ModelState.IsValid)
             {
-                db.Order.Add(order);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.Order.Add(order);
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    ViewBag.Error = true;
+                    return View(order);
+                }
+                ViewBag.Error = false;
+                ViewBag.ZamowienieId = order.Id;
+                return View(order);
             }
-            return View("Order_Meal/Create");
+            return View(order);
         }
+
+
 
         // GET: Orders/Edit/5
         public ActionResult Edit(int? id)

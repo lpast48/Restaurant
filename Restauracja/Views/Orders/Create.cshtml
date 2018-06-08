@@ -1,11 +1,25 @@
 ﻿@model Restauracja.Models.Order
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Nowe zamówienie";
 }
 
-<h2>Create</h2>
+<h2>Nowe zamówienie</h2>
 
+@if (ViewBag.Error == true)
+{
+    <div class="alert alert-danger" role="alert">
+        Wystąpił błąd podczas próby utworzenia.<br />
+        Spróbuj ponownie.
+    </div>
+}
+else if (ViewBag.Error == false)
+{
+    <div class="alert alert-success" role="alert">
+        Utworzono pomyślnie.
+        Przejdź do dodawania potraw.
+    </div>
+}
 
 @using (Html.BeginForm()) 
 {
@@ -23,11 +37,22 @@
                 @Html.ValidationMessageFor(model => model.Table, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-success" />
+        @if (ViewBag.Error != false)
+        {
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-success" />
+                </div>
             </div>
-        </div>
+        }
+        else
+        {
+            <div>
+                @Html.ActionLink("Dodaj potrawy", "../Order_Meal/Create", new { orderId = ViewBag.ZamowienieId }, new { @class = "btn btn-primary" })
+            </div>
+        }
+
+
     </div>
 }
 

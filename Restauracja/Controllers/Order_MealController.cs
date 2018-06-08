@@ -17,7 +17,9 @@ namespace Restauracja.Controllers
         // GET: Order_Meal
         public ActionResult Index()
         {
-            var order_Meal = db.Order_Meal.Include(o => o.Meal).Include(o => o.Order);
+            var order_Meal = db.Order_Meal.
+                Include(o => o.Meal).
+                Include(o => o.Order);
             return View(order_Meal.ToList());
         }
 
@@ -37,10 +39,10 @@ namespace Restauracja.Controllers
         }
 
         // GET: Order_Meal/Create
-        public ActionResult Create()
+        public ActionResult Create(int orderId)
         {
             ViewBag.MealId = new SelectList(db.Meal, "Id", "Name");
-            ViewBag.OrderId = new SelectList(db.Order, "Id", "WaiterId");
+            ViewBag.ZamowienieId = orderId;
             return View();
         }
 
@@ -59,7 +61,7 @@ namespace Restauracja.Controllers
             }
 
             ViewBag.MealId = new SelectList(db.Meal, "Id", "Name", order_Meal.MealId);
-            ViewBag.OrderId = new SelectList(db.Order, "Id", "WaiterId", order_Meal.OrderId);
+            ViewBag.OrderId = order_Meal.OrderId;
             return View(order_Meal);
         }
 

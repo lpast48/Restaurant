@@ -15,7 +15,10 @@
             @Html.DisplayNameFor(model => model.Meal.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Order.WaiterId)
+            @Html.DisplayNameFor(model => model.Order.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Order.Table)
         </th>
         <th></th>
     </tr>
@@ -26,7 +29,10 @@
             @Html.DisplayFor(modelItem => item.Meal.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Order.WaiterId)
+            @Html.DisplayFor(modelItem => item.Order.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Order.Table)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

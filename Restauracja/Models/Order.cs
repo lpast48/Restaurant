@@ -13,7 +13,7 @@ namespace Restauracja.Models
             this.Order_Meal = new HashSet<Order_Meal>();
         }
 
-        [Display(Name = "Id:")]
+        [Display(Name = "Id zamówienia:")]
         public int Id { get; set; } 
 
         [Display(Name = "Id kelnera:")]
