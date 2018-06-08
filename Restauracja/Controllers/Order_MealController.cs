@@ -42,7 +42,6 @@ namespace Restauracja.Controllers
         public ActionResult Create(int orderId)
         {
             ViewBag.MealId = new SelectList(db.Meal, "Id", "Name");
-            ViewBag.ZamowienieId = orderId;
             return View();
         }
 
@@ -55,13 +54,22 @@ namespace Restauracja.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Order_Meal.Add(order_Meal);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.Order_Meal.Add(order_Meal);
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    ViewBag.Error = true;
+                    ViewBag.MealId = new SelectList(db.Meal, "Id", "Name");
+                    return View();
+                }
+                ViewBag.MealId = new SelectList(db.Meal, "Id", "Name");
+                return View();
             }
 
-            ViewBag.MealId = new SelectList(db.Meal, "Id", "Name", order_Meal.MealId);
-            ViewBag.OrderId = order_Meal.OrderId;
+            ViewBag.MealId = new SelectList(db.Meal, "Id", "Name");
             return View(order_Meal);
         }
 

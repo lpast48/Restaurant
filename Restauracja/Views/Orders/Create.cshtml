@@ -41,15 +41,18 @@ else if (ViewBag.Error == false)
         {
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-success" />
+                    <input type="submit" value="Utwórz" class="btn btn-success" />
                 </div>
             </div>
         }
         else
         {
             <div>
-                @Html.ActionLink("Dodaj potrawy", "../Order_Meal/Create", new { orderId = ViewBag.ZamowienieId }, new { @class = "btn btn-primary" })
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.ActionLink("Dodaj potrawy", "../Order_Meal/Create", new { orderId = ViewBag.ZamowienieId }, new { @class = "btn btn-primary" })
+                </div>
             </div>
+
         }
 
 
@@ -57,7 +60,7 @@ else if (ViewBag.Error == false)
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Powrót", "Index", null, new { @class = "btn btn-primary" })
 </div>
 
 @section Scripts {

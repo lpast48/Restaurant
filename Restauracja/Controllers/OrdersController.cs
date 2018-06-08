@@ -18,7 +18,7 @@ namespace Restauracja.Controllers
         // GET: Orders
         public ActionResult Index()
         {
-            var order = db.Order.Include(o => o.Waiter);
+            var order = db.Order.Where(o => o.MealTime == null);
             return View(order.ToList());
         }
 

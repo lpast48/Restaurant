@@ -35,7 +35,7 @@
             @Html.DisplayFor(modelItem => item.MealTime)
         </td>
         <td>
-            @Html.ActionLink("Dodaj potrawę", "Edit", new { id=item.Id }, new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Dodaj potrawy", "../Order_Meal/Create", new { orderId = item.Id }, new { @class = "btn btn-primary" }) | Wystaw rachunek
         </td>
     </tr>
 }
