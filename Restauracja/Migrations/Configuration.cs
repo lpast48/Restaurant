@@ -86,14 +86,16 @@ namespace Restauracja.Migrations
 
         private void SeedMeals(RestaurantContext context)
         {
-            for (int i = 1; i <= 10; i++)
+            for (float i = 1; i <= 10; i++)
             {
                 var meal = new Meal()
                 {
-                    Id = i,
+                    Id = (int)i,
                     Name = "Nazwa pois³ku" + i.ToString(),
                     Description = "opis posi³ku" + i.ToString(),
-                    Ingredients = "sk³adniki posi³ku" + i.ToString()
+                    Ingredients = "sk³adniki posi³ku" + i.ToString(),
+                    Price = i + i / 10,
+                    Allergens = "przyk³adowe alergeny" + (10 - i).ToString(),
                 };
                 context.Set<Meal>().AddOrUpdate(meal);
             }

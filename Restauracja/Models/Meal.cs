@@ -25,6 +25,12 @@ namespace Restauracja.Models
         [Display(Name = "Składniki")]
         public string Ingredients { get; set; }
 
+        [Display(Name = "Cena")]
+        public float Price { get; set; }
+
+        [Display(Name = "Alergeny")]
+        public string Allergens { get; set; }
+
         public ICollection<Order_Meal> Order_Meal { get; set; }
 
     }
