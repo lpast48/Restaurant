@@ -36,6 +36,7 @@ namespace Restauracja.Controllers
         }
 
         // GET: Meals/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();

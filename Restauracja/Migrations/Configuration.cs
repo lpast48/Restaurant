@@ -59,25 +59,25 @@ namespace Restauracja.Migrations
         {
             var store = new UserStore<User>(context);
             var manager = new UserManager<User>(store);
-            if (!context.Users.Any(u => u.UserName == "Admin"))
+            if (!context.Users.Any(u => u.UserName == "Admin@ASP.pl"))
             {
-                var user = new User { UserName = "Admin" };
+                var user = new User { UserName = "Admin@ASP.pl" };
                 var adminresult = manager.Create(user, "12345678");
                 if (adminresult.Succeeded)
                     manager.AddToRole(user.Id, "Admin");
             }
 
-            if (!context.Users.Any(u => u.UserName == "Waitress"))
+            if (!context.Users.Any(u => u.UserName == "Waitress@ASP.pl"))
             {
-                var user = new User { UserName = "Waitress" };
+                var user = new User { UserName = "Waitress@ASP.pl" };
                 var adminresult = manager.Create(user, "12345678");
                 if (adminresult.Succeeded)
                     manager.AddToRole(user.Id, "Waiter");
             }
 
-            if (!context.Users.Any(u => u.UserName == "Chef"))
+            if (!context.Users.Any(u => u.UserName == "Chef@ASP.pl"))
             {
-                var user = new User { UserName = "Chef" };
+                var user = new User { UserName = "Chef@ASP.pl" };
                 var adminresult = manager.Create(user, "12345678");
                 if (adminresult.Succeeded)
                     manager.AddToRole(user.Id, "Chef");
