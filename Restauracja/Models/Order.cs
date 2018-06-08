@@ -16,6 +16,9 @@ namespace Restauracja.Models
         [Display(Name = "Id:")]
         public int Id { get; set; } 
 
+        [Display(Name = "Id kelnera:")]
+        public string WaiterId { get; set; }
+
         [Display(Name ="Numer stolika")]
         public int Table { get; set; }
 
@@ -30,6 +33,7 @@ namespace Restauracja.Models
         public System.DateTime MealTime { get; set; }
 
         public virtual ICollection<Order_Meal> Order_Meal { get; set; }
+        public virtual User Waiter { get; set; }
 
     }
 }
