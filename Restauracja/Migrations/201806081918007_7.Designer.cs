@@ -7,13 +7,13 @@ namespace Restauracja.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class _2 : IMigrationMetadata
+    public sealed partial class _7 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(_2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(_7));
         
         string IMigrationMetadata.Id
         {
-            get { return "201806081440024_2"; }
+            get { return "201806081918007_7"; }
         }
         
         string IMigrationMetadata.Source

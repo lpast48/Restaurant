@@ -17,18 +17,26 @@ namespace Restauracja.Models
         public int Id { get; set; }
 
         [Display(Name = "Nazwa")]
+        [MinLength(5)]
+        [Required]
         public string Name { get; set; }
 
         [Display(Name = "Opis")]
+        [MinLength(20)]
+        [Required]
         public string Description { get; set; }
 
         [Display(Name = "Składniki")]
+        [MinLength(10)]
+        [Required]
         public string Ingredients { get; set; }
 
         [Display(Name = "Cena")]
-        public float Price { get; set; }
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}", ApplyFormatInEditMode = true)]
+        public decimal Price { get; set; }
 
         [Display(Name = "Alergeny")]
+        [Required]
         public string Allergens { get; set; }
 
         public ICollection<Order_Meal> Order_Meal { get; set; }

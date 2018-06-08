@@ -20,6 +20,7 @@ namespace Restauracja.Models
         public string WaiterId { get; set; }
 
         [Display(Name ="Numer stolika")]
+        [Range(1,10)]
         public int Table { get; set; }
 
         [Display(Name = "Czas złożenia zamówienia")]
@@ -27,10 +28,10 @@ namespace Restauracja.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}", ApplyFormatInEditMode = true)]
         public System.DateTime OrderTime { get; set; }
 
-        [Display(Name = "Czas złożenia zamówienia")]
+        [Display(Name = "Czas realizacji zamówienia")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}", ApplyFormatInEditMode = true)]
-        public System.DateTime MealTime { get; set; }
+        public System.DateTime? MealTime { get; set; }
 
         public virtual ICollection<Order_Meal> Order_Meal { get; set; }
         public virtual User Waiter { get; set; }

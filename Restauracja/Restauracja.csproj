@@ -191,16 +191,22 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MealsController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\Order_MealController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806081415395_1.cs" />
-    <Compile Include="Migrations\201806081415395_1.Designer.cs">
-      <DependentUpon>201806081415395_1.cs</DependentUpon>
+    <Compile Include="Migrations\201806081728023_4.cs" />
+    <Compile Include="Migrations\201806081728023_4.Designer.cs">
+      <DependentUpon>201806081728023_4.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806081440024_2.cs" />
-    <Compile Include="Migrations\201806081440024_2.Designer.cs">
-      <DependentUpon>201806081440024_2.cs</DependentUpon>
+    <Compile Include="Migrations\201806081833349_6.cs" />
+    <Compile Include="Migrations\201806081833349_6.Designer.cs">
+      <DependentUpon>201806081833349_6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806081918007_7.cs" />
+    <Compile Include="Migrations\201806081918007_7.Designer.cs">
+      <DependentUpon>201806081918007_7.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -319,6 +325,16 @@
     <Content Include="Views\Meals\Details.cshtml" />
     <Content Include="Views\Meals\Edit.cshtml" />
     <Content Include="Views\Meals\Index.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Orders\Delete.cshtml" />
+    <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Orders\Edit.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Order_Meal\Create.cshtml" />
+    <Content Include="Views\Order_Meal\Delete.cshtml" />
+    <Content Include="Views\Order_Meal\Details.cshtml" />
+    <Content Include="Views\Order_Meal\Edit.cshtml" />
+    <Content Include="Views\Order_Meal\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -339,11 +355,14 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806081415395_1.resx">
-      <DependentUpon>201806081415395_1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806081728023_4.resx">
+      <DependentUpon>201806081728023_4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806081440024_2.resx">
-      <DependentUpon>201806081440024_2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806081833349_6.resx">
+      <DependentUpon>201806081833349_6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806081918007_7.resx">
+      <DependentUpon>201806081918007_7.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

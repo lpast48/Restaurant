@@ -7,126 +7,118 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Restauracja.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Restauracja.Controllers
 {
-    public class MealsController : Controller
+    public class OrdersController : Controller
     {
         private RestaurantContext db = new RestaurantContext();
 
-        // GET: Meals
+        // GET: Orders
         public ActionResult Index()
         {
-            return View(db.Meal.ToList());
+            var order = db.Order.Include(o => o.Waiter);
+            return View(order.ToList());
         }
 
-        // GET: Meals/Details/5
+        // GET: Orders/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Meal meal = db.Meal.Find(id);
-            if (meal == null)
+            Order order = db.Order.Find(id);
+            if (order == null)
             {
                 return HttpNotFound();
             }
-            return View(meal);
+            return View(order);
         }
 
-        // GET: Meals/Create
-        [Authorize]
+        // GET: Orders/Create
         public ActionResult Create()
         {
+            ViewBag.WaiterId = new SelectList(db.Users, "Id", "Email");
             return View();
         }
 
-        // POST: Meals/Create
+        // POST: Orders/Create
         // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,Ingredients,Allergens,Price")] Meal meal)
+        public ActionResult Create([Bind(Include = "Id,Table")] Order order)
         {
+            order.WaiterId = User.Identity.GetUserId();
+            order.OrderTime = DateTime.Now;
+            order.MealTime = null;
             if (ModelState.IsValid)
             {
-                try
-                {
-                    db.Meal.Add(meal);
-                    db.SaveChanges();
-                }
-                catch
-                {
-                    ViewBag.Error = true;
-                    return View(meal);
-                }
+                db.Order.Add(order);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            ViewBag.Error = false;
-            return View(meal);
+            return View("Order_Meal/Create");
         }
 
-        // GET: Meals/Edit/5
+        // GET: Orders/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Meal meal = db.Meal.Find(id);
-            if (meal == null)
+            Order order = db.Order.Find(id);
+            if (order == null)
             {
                 return HttpNotFound();
             }
-            return View(meal);
+            ViewBag.WaiterId = new SelectList(db.Users, "Id", "Email", order.WaiterId);
+            return View(order);
         }
 
-        // POST: Meals/Edit/5
+        // POST: Orders/Edit/5
         // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,Ingredients,Allergens,Price")] Meal meal)
+        public ActionResult Edit([Bind(Include = "Id,WaiterId,Table,OrderTime,MealTime")] Order order)
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    db.Entry(meal).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
-                catch
-                {
-                    ViewBag.Error = true;
-                    return View(meal);
-                }
+                db.Entry(order).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            ViewBag.Error = false;
-            return View(meal);
+            ViewBag.WaiterId = new SelectList(db.Users, "Id", "Email", order.WaiterId);
+            return View(order);
         }
 
-        // GET: Meals/Delete/5
+        // GET: Orders/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Meal meal = db.Meal.Find(id);
-            if (meal == null)
+            Order order = db.Order.Find(id);
+            if (order == null)
             {
                 return HttpNotFound();
             }
-            return View(meal);
+            return View(order);
         }
 
-        // POST: Meals/Delete/5
+        // POST: Orders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Meal meal = db.Meal.Find(id);
-            db.Meal.Remove(meal);
+            Order order = db.Order.Find(id);
+            db.Order.Remove(order);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

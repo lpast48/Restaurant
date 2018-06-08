@@ -91,10 +91,10 @@ namespace Restauracja.Migrations
                 var meal = new Meal()
                 {
                     Id = (int)i,
-                    Name = "Nazwa pois³ku" + i.ToString(),
-                    Description = "opis posi³ku" + i.ToString(),
+                    Name = "Nazwa posi³ku" + i.ToString(),
+                    Description = "opis posi³ku opis posi³ku min 20 znaków" + i.ToString(),
                     Ingredients = "sk³adniki posi³ku" + i.ToString(),
-                    Price = i + i / 10,
+                    Price = (decimal)(i + i / 10),
                     Allergens = "przyk³adowe alergeny" + (10 - i).ToString(),
                 };
                 context.Set<Meal>().AddOrUpdate(meal);

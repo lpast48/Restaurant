@@ -6,6 +6,20 @@
 
 <h2>Nowy posiłek</h2>
 
+@if (ViewBag.Error == true)
+{
+    <div class="alert alert-danger" role="alert">
+        Wystąpił błąd podczas próby utworzenia.<br />
+        Spróbuj ponownie.
+    </div>
+}
+else if (ViewBag.Error == false)
+{
+    <div class="alert alert-success" role="alert">
+        Utworzono pomyślnie.
+        Pozycja w menu wygląda następująco:
+    </div>
+}
 
 @using (Html.BeginForm()) 
 {
