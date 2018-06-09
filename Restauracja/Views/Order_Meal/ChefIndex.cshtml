@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Restauracja.Models.Order_Meal>
+
+@{
+    ViewBag.Title = "ChefIndex";
+}
+
+<h2>Lista potraw do przyrządzenia</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Meal.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Meal.Ingredients)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Order.OrderTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Meal.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Meal.Ingredients)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Order.OrderTime)
+        </td>
+        <td>
+            @Html.ActionLink("Wydaj potrawę", "MealIssue", new { id=item.Id }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

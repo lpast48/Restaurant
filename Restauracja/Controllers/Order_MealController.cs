@@ -24,6 +24,23 @@ namespace Restauracja.Controllers
             return View(order_Meal.ToList());
         }
 
+        public ActionResult ChefIndex()
+        {
+            var order_Meal = db.Order_Meal.
+                Include(o => o.Meal).
+                Include(o => o.Order).
+                Where(o => o.IssueTime == null).
+                OrderBy(o => o.Order.OrderTime);
+            return View(order_Meal.ToList());
+        }
+
+        public ActionResult MealIssue(int id)
+        {
+            db.Order_Meal.Find(id).IssueTime = DateTime.Now;
+            db.SaveChanges();
+            return RedirectToAction("ChefIndex");
+        }
+
         // GET: Order_Meal/Details/5
         //public ActionResult Details(int? id)
         //{
