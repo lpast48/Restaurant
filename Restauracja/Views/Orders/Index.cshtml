@@ -37,7 +37,7 @@
         <td>
             @Html.ActionLink("Dodaj potrawy", "../Order_Meal/Create", new { orderId = item.Id }, new { @class = "btn btn-success" })
             @Html.ActionLink("Lista Potraw", "../Order_Meal/Index", new { orderId = item.Id }, new { @class = "btn btn-primary" })
-            @Html.ActionLink("Wystaw rachunek", "Details", new { orderId = item.Id }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Wystaw rachunek", "Delete", new { id = item.Id }, new { @class = "btn btn-warning" })
         </td>
     </tr>
 }

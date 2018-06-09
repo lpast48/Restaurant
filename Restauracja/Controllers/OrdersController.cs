@@ -133,8 +133,7 @@ namespace Restauracja.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Order order = db.Order.Find(id);
-            db.Order.Remove(order);
+            db.Order.Find(id).MealTime = DateTime.Now;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
