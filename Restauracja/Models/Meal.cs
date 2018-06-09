@@ -39,6 +39,8 @@ namespace Restauracja.Models
         [Required]
         public string Allergens { get; set; }
 
+        public bool Visibility { get; set; }
+
         public ICollection<Order_Meal> Order_Meal { get; set; }
 
     }

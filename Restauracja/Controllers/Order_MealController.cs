@@ -68,6 +68,9 @@ namespace Restauracja.Controllers
                 catch
                 {
                     ViewBag.Error = true;
+                    ViewBag.OrderId = order_Meal.OrderId;
+                    ViewBag.MealId = new SelectList(db.Meal, "Id", "Name");
+                    return View();
                 }
                 ViewBag.Error = false;
                 ViewBag.OrderId = order_Meal.OrderId;

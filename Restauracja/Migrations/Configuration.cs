@@ -26,8 +26,8 @@ namespace Restauracja.Migrations
             SeedRoles(context);
             SeedUsers(context);
             SeedMeals(context);
-            SeedOrders(context);
-            SeedOrder_Meal(context);
+            //SeedOrders(context);
+            //SeedOrder_Meal(context);
         }
 
         private void SeedRoles(RestaurantContext context)
@@ -90,12 +90,13 @@ namespace Restauracja.Migrations
             {
                 var meal = new Meal()
                 {
-                    Id = (int)i,
+                    Id = i,
                     Name = "Nazwa posi³ku" + i.ToString(),
                     Description = "opis posi³ku opis posi³ku min 20 znaków" + i.ToString(),
                     Ingredients = "sk³adniki posi³ku" + i.ToString(),
                     Price = i,
                     Allergens = "przyk³adowe alergeny" + (10 - i).ToString(),
+                    Visibility = true
                 };
                 context.Set<Meal>().AddOrUpdate(meal);
             }
