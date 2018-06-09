@@ -26,7 +26,6 @@ else if (ViewBag.Error == false)
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Order</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -39,29 +38,16 @@ else if (ViewBag.Error == false)
         </div>
         @if (ViewBag.Error != false)
         {
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Utwórz" class="btn btn-success" />
-                </div>
-            </div>
+            <input type="submit" value="Utwórz" class="btn btn-success" />
         }
         else
         {
-            <div>
-                <div class="col-md-offset-2 col-md-10">
-                    @Html.ActionLink("Dodaj potrawy", "../Order_Meal/Create", new { orderId = ViewBag.ZamowienieId }, new { @class = "btn btn-primary" })
-                </div>
-            </div>
-
+            @Html.ActionLink("Dodaj potrawy", "../Order_Meal/Create", new { orderId = ViewBag.ZamowienieId }, new { @class = "btn btn-success" })
         }
 
-
+        @Html.ActionLink("Powrót", "Index", null, new { @class = "btn btn-primary" })
     </div>
 }
-
-<div>
-    @Html.ActionLink("Powrót", "Index", null, new { @class = "btn btn-primary" })
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
