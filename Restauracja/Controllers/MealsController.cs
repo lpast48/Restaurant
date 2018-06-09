@@ -17,7 +17,14 @@ namespace Restauracja.Controllers
         // GET: Meals
         public ActionResult Index()
         {
-            return View(db.Meal.ToList());
+            var meal = db.Meal.Where(m => m.Visibility == true);
+            return View(meal.ToList());
+        }
+
+        public ActionResult ChefIndex()
+        {
+            var meal = db.Meal;
+            return View(meal.ToList());
         }
 
         // GET: Meals/Details/5
@@ -86,7 +93,7 @@ namespace Restauracja.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,Ingredients,Allergens,Price")] Meal meal)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,Ingredients,Allergens,Price,Visibility")] Meal meal)
         {
             if (ModelState.IsValid)
             {

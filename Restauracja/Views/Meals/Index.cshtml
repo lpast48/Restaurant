@@ -38,9 +38,6 @@
         </td>
         <td>
             @Html.ActionLink("Szczegóły", "Details", new { id = item.Id }, new { @class = "btn btn-primary" })
-            @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Chef"))){
-                @Html.ActionLink("Edytuj", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" })
-            }
         </td>
     </tr>
 }

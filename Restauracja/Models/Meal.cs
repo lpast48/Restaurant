@@ -39,6 +39,7 @@ namespace Restauracja.Models
         [Required]
         public string Allergens { get; set; }
 
+        [Display(Name = "Widzialność dla klienta")]
         public bool Visibility { get; set; }
 
         public ICollection<Order_Meal> Order_Meal { get; set; }

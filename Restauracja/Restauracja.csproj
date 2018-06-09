@@ -343,6 +343,7 @@
     <Content Include="Views\Order_Meal\Details.cshtml" />
     <Content Include="Views\Order_Meal\Edit.cshtml" />
     <Content Include="Views\Order_Meal\Index.cshtml" />
+    <Content Include="Views\Meals\ChefIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

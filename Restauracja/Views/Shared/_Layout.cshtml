@@ -24,8 +24,19 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Strona główna", "Index", "Home")</li>
                     <li>@Html.ActionLink("Informacje", "About", "Home")</li>
-                    <li>@Html.ActionLink("Oferta", "Index", "Meals")</li>
                 </ul>
+                @if (User.Identity.IsAuthenticated && (User.IsInRole("Chef")||User.IsInRole("Admin")))
+                {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Oferta", "ChefIndex", "Meals")</li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Oferta", "Index", "Meals")</li>
+                    </ul>
+                }
                 @if (User.Identity.IsAuthenticated && User.IsInRole("Waiter"))
                 {
                     <ul class="nav navbar-nav">
