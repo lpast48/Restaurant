@@ -5,17 +5,21 @@
 }
 
 <h2>Lista zamówionych potraw</h2>
+<td>
+    @Html.ActionLink("Lista zamówień", "../Orders", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Dodaj", "Create", new { orderId = Model.First().OrderId}, new { @class = "btn btn-success" })
+</td>
 
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Order.Id)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.Order.Table)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Meal.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Meal.Price)
         </th>
         <th></th>
     </tr>
@@ -23,16 +27,17 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Order.Id)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Order.Table)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Meal.Name)
         </td>
         <td>
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.DisplayFor(modelItem => item.Meal.Price)
+        </td>
+        <td>
+            @Html.ActionLink("Usuń", "Delete", new { id=item.Id }, new { @class = "btn btn-danger" })
+            
         </td>
     </tr>
 }

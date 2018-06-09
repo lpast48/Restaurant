@@ -20,8 +20,10 @@ namespace Restauracja.Controllers
         public ActionResult Index()
         {
             var order = db.Order.
-                Where(o => o.MealTime == null);
-            return View(order.ToList());
+                Where(o => o.MealTime == null).ToList();
+            //order.Sum(p=> p.Order_Meal.Id);
+            //orderMeal.Sum(p => p.Meal.Price);
+            return View(order);
         }
 
         // GET: Orders/Details/5

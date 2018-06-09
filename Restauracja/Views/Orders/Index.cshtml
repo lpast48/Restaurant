@@ -17,9 +17,9 @@
         <th>
             @Html.DisplayNameFor(model => model.OrderTime)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MealTime)
-        </th>
+        <td>
+            @Html.DisplayNameFor(model => model.Price)
+        </td>
         <th></th>
     </tr>
 
@@ -32,11 +32,12 @@
             @Html.DisplayFor(modelItem => item.OrderTime)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.MealTime)
+            @Html.DisplayFor(modelItem => item.Price)
         </td>
-
         <td>
-            @Html.ActionLink("Dodaj potrawy", "../Order_Meal/Create", new { orderId = item.Id }, new { @class = "btn btn-primary" }) | Wystaw rachunek
+            @Html.ActionLink("Dodaj potrawy", "../Order_Meal/Create", new { orderId = item.Id }, new { @class = "btn btn-success" })
+            @Html.ActionLink("Lista Potraw", "../Order_Meal/Index", new { orderId = item.Id }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Wystaw rachunek", "Details", new { orderId = item.Id }, new { @class = "btn btn-warning" })
         </td>
     </tr>
 }

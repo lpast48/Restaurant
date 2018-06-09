@@ -86,7 +86,7 @@ namespace Restauracja.Migrations
 
         private void SeedMeals(RestaurantContext context)
         {
-            for (float i = 1; i <= 10; i++)
+            for (int i = 1; i <= 10; i++)
             {
                 var meal = new Meal()
                 {
@@ -94,7 +94,7 @@ namespace Restauracja.Migrations
                     Name = "Nazwa posi³ku" + i.ToString(),
                     Description = "opis posi³ku opis posi³ku min 20 znaków" + i.ToString(),
                     Ingredients = "sk³adniki posi³ku" + i.ToString(),
-                    Price = (decimal)(i + i / 10),
+                    Price = i,
                     Allergens = "przyk³adowe alergeny" + (10 - i).ToString(),
                 };
                 context.Set<Meal>().AddOrUpdate(meal);
@@ -116,7 +116,8 @@ namespace Restauracja.Migrations
                     WaiterId = userId,
                     Table = 1,
                     OrderTime = DateTime.Now.AddHours(-i),
-                    MealTime = DateTime.Now
+                    MealTime = DateTime.Now,
+                    Price = 0
                 };
                 context.Set<Order>().AddOrUpdate(order);
             }

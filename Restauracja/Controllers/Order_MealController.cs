@@ -25,19 +25,19 @@ namespace Restauracja.Controllers
         }
 
         // GET: Order_Meal/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Order_Meal order_Meal = db.Order_Meal.Find(id);
-            if (order_Meal == null)
-            {
-                return HttpNotFound();
-            }
-            return View(order_Meal);
-        }
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Order_Meal order_Meal = db.Order_Meal.Find(id);
+        //    if (order_Meal == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(order_Meal);
+        //}
 
         // GET: Order_Meal/Create
         public ActionResult Create(int orderId)
@@ -60,6 +60,10 @@ namespace Restauracja.Controllers
                 {
                     db.Order_Meal.Add(order_Meal);
                     db.SaveChanges();
+
+                    Meal meal = db.Meal.Find(order_Meal.MealId);
+                    db.Order.Find(order_Meal.OrderId).Price += meal.Price;
+                    db.SaveChanges();
                 }
                 catch
                 {
@@ -76,39 +80,39 @@ namespace Restauracja.Controllers
         }
 
         // GET: Order_Meal/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Order_Meal order_Meal = db.Order_Meal.Find(id);
-            if (order_Meal == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.MealId = new SelectList(db.Meal, "Id", "Name", order_Meal.MealId);
-            ViewBag.OrderId = new SelectList(db.Order, "Id", "WaiterId", order_Meal.OrderId);
-            return View(order_Meal);
-        }
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Order_Meal order_Meal = db.Order_Meal.Find(id);
+        //    if (order_Meal == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    ViewBag.MealId = new SelectList(db.Meal, "Id", "Name", order_Meal.MealId);
+        //    ViewBag.OrderId = new SelectList(db.Order, "Id", "WaiterId", order_Meal.OrderId);
+        //    return View(order_Meal);
+        //}
 
         // POST: Order_Meal/Edit/5
         // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,OrderId,MealId")] Order_Meal order_Meal)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(order_Meal).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.MealId = new SelectList(db.Meal, "Id", "Name", order_Meal.MealId);
-            ViewBag.OrderId = new SelectList(db.Order, "Id", "WaiterId", order_Meal.OrderId);
-            return View(order_Meal);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit([Bind(Include = "Id,OrderId,MealId")] Order_Meal order_Meal)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(order_Meal).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    ViewBag.MealId = new SelectList(db.Meal, "Id", "Name", order_Meal.MealId);
+        //    ViewBag.OrderId = new SelectList(db.Order, "Id", "WaiterId", order_Meal.OrderId);
+        //    return View(order_Meal);
+        //}
 
         // GET: Order_Meal/Delete/5
         public ActionResult Delete(int? id)
@@ -134,6 +138,11 @@ namespace Restauracja.Controllers
             int orderId = order_Meal.OrderId;
             db.Order_Meal.Remove(order_Meal);
             db.SaveChanges();
+
+            Meal meal = db.Meal.Find(order_Meal.MealId);
+            db.Order.Find(order_Meal.OrderId).Price -= meal.Price;
+            db.SaveChanges();
+
             return RedirectToAction("Index", new { orderId });
         }
 

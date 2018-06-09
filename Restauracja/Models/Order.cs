@@ -33,6 +33,9 @@ namespace Restauracja.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}", ApplyFormatInEditMode = true)]
         public System.DateTime? MealTime { get; set; }
 
+        [Display(Name = "Wartość rachunku")]
+        public int Price { get; set; }
+
         public virtual ICollection<Order_Meal> Order_Meal { get; set; }
         public virtual User Waiter { get; set; }
 

@@ -33,7 +33,7 @@ namespace Restauracja.Models
 
         [Display(Name = "Cena")]
         //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}", ApplyFormatInEditMode = true)]
-        public decimal Price { get; set; }
+        public int Price { get; set; }
 
         [Display(Name = "Alergeny")]
         [Required]

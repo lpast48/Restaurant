@@ -34,7 +34,8 @@
 }
 
 <div>
-    @Html.ActionLink("pokaż listę zamówionych potraw", "Index", new { orderId = ViewBag.OrderId }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Lista zamówionych potraw", "Index", new { orderId = ViewBag.OrderId }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Lista zamówień", "../Orders/Index", null, new { @class = "btn btn-primary" })
 </div>
 
 @section Scripts {
