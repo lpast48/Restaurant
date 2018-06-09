@@ -25,16 +25,16 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">            
+            <div class="col-md-offset-2 col-md-10">
                 @Html.Hidden("OrderId")
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Dodaj" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("pokaż listę zamówionych potraw", "Index")
+    @Html.ActionLink("pokaż listę zamówionych potraw", "Index", new { orderId = ViewBag.OrderId }, new { @class = "btn btn-primary" })
 </div>
 
 @section Scripts {

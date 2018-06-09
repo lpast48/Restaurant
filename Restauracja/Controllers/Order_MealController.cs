@@ -15,11 +15,12 @@ namespace Restauracja.Controllers
         private RestaurantContext db = new RestaurantContext();
 
         // GET: Order_Meal
-        public ActionResult Index()
+        public ActionResult Index(int orderId)
         {
             var order_Meal = db.Order_Meal.
                 Include(o => o.Meal).
-                Include(o => o.Order);
+                Include(o => o.Order).
+                Where(o => o.OrderId == orderId);
             return View(order_Meal.ToList());
         }
 
@@ -42,6 +43,7 @@ namespace Restauracja.Controllers
         public ActionResult Create(int orderId)
         {
             ViewBag.MealId = new SelectList(db.Meal, "Id", "Name");
+            ViewBag.OrderId = orderId;
             return View();
         }
 
@@ -62,9 +64,9 @@ namespace Restauracja.Controllers
                 catch
                 {
                     ViewBag.Error = true;
-                    ViewBag.MealId = new SelectList(db.Meal, "Id", "Name");
-                    return View();
                 }
+                ViewBag.Error = false;
+                ViewBag.OrderId = order_Meal.OrderId;
                 ViewBag.MealId = new SelectList(db.Meal, "Id", "Name");
                 return View();
             }
@@ -129,9 +131,10 @@ namespace Restauracja.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Order_Meal order_Meal = db.Order_Meal.Find(id);
+            int orderId = order_Meal.OrderId;
             db.Order_Meal.Remove(order_Meal);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { orderId });
         }
 
         protected override void Dispose(bool disposing)

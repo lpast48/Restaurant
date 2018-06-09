@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Restauracja.Models;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity.Core.Common.CommandTrees;
 
 namespace Restauracja.Controllers
 {
@@ -18,7 +19,8 @@ namespace Restauracja.Controllers
         // GET: Orders
         public ActionResult Index()
         {
-            var order = db.Order.Where(o => o.MealTime == null);
+            var order = db.Order.
+                Where(o => o.MealTime == null);
             return View(order.ToList());
         }
 
