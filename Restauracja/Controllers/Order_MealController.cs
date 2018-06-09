@@ -46,7 +46,12 @@ namespace Restauracja.Controllers
         {
             var order_Meal = db.Order.
                 Where(o => o.MealTime != null).
-                GroupBy(o => o.Table);
+                GroupBy(o => o.Table).ToList();
+
+            foreach (var item in order_Meal)
+            {
+                var suma = item.Sum(o => o.Price);
+            }
 
             return View(order_Meal.ToList());
         }
