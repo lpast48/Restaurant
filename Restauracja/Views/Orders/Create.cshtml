@@ -12,6 +12,12 @@
         Wystąpił błąd podczas próby utworzenia.<br />
         Spróbuj ponownie.
     </div>
+    if (ViewBag.TableError == true)
+    {
+        <div class="alert alert-danger" role="alert">
+            Dla tego stolika jest już otwarty rachunek<br />
+        </div>
+    }
 }
 else if (ViewBag.Error == false)
 {

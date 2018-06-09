@@ -1,14 +1,11 @@
 ﻿@model Restauracja.Models.Order_Meal
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Usuń";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
+<h3>Czy chcesz usunąć tę pozycję?</h3>
 <div>
-    <h4>Order_Meal</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -20,11 +17,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Order.WaiterId)
+            @Html.DisplayNameFor(model => model.Meal.Price)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Order.WaiterId)
+            @Html.DisplayFor(model => model.Meal.Price)
         </dd>
 
     </dl>
@@ -33,8 +30,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Usuń" class="btn btn-danger" /> |
+            @Html.ActionLink("Powrót", "Index", new { orderId = Model.OrderId}, new{@class = "btn btn-primary"})
         </div>
     }
 </div>

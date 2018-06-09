@@ -20,9 +20,8 @@ namespace Restauracja.Controllers
         public ActionResult Index()
         {
             var order = db.Order.
-                Where(o => o.MealTime == null).ToList();
-            //order.Sum(p=> p.Order_Meal.Id);
-            //orderMeal.Sum(p => p.Meal.Price);
+                Where(o => o.MealTime == null).
+                OrderBy(o=>o.Table).ToList();
             return View(order);
         }
 
@@ -56,11 +55,21 @@ namespace Restauracja.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Table")] Order order)
         {
+            var orders = db.Order.Where(o => o.MealTime == null).ToList();
             order.WaiterId = User.Identity.GetUserId();
             order.OrderTime = DateTime.Now;
             order.MealTime = null;
             if (ModelState.IsValid)
             {
+                foreach (var item in orders)
+                {
+                    if(order.Table == item.Table)
+                    {
+                        ViewBag.Error = true;
+                        ViewBag.TableError = true;
+                        return View(order);
+                    }
+                }
                 try
                 {
                     db.Order.Add(order);

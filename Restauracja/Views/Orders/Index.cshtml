@@ -32,7 +32,7 @@
             @Html.DisplayFor(modelItem => item.OrderTime)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Price)
+            @Html.DisplayFor(modelItem => item.Price) zł
         </td>
         <td>
             @Html.ActionLink("Dodaj potrawy", "../Order_Meal/Create", new { orderId = item.Id }, new { @class = "btn btn-success" })
