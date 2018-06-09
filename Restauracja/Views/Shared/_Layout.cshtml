@@ -37,6 +37,14 @@
                         <li>@Html.ActionLink("Oferta", "Index", "Meals")</li>
                     </ul>
                 }
+
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Chef"))
+                {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Zamówienia", "ChefIndex", "Order_Meal")</li>
+                    </ul>
+                }
+
                 @if (User.Identity.IsAuthenticated && User.IsInRole("Waiter"))
                 {
                     <ul class="nav navbar-nav">

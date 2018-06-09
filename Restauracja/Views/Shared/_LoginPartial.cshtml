@@ -14,7 +14,8 @@
         if (User.IsInRole("Admin"))
         {
         <ul class="nav navbar-nav navbar-right">
-            <li>@Html.ActionLink("Dodaj pracownika", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("Dodaj Kelnera", "WaiterRegister", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("Dodaj Kucharza", "ChefRegister", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
         </ul>
         }
 
