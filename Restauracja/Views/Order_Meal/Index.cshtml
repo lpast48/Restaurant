@@ -7,7 +7,7 @@
 <h2>Lista zamówionych potraw</h2>
 <td>
     @Html.ActionLink("Lista zamówień", "../Orders", null, new { @class = "btn btn-primary" })
-    @Html.ActionLink("Dodaj", "Create", new { orderId = Model.First().OrderId}, new { @class = "btn btn-success" })
+    @Html.ActionLink("Dodaj", "Create", new { orderId = ViewBag.orderId }, new { @class = "btn btn-success" })
 </td>
 
 <table class="table">

@@ -21,6 +21,7 @@ namespace Restauracja.Controllers
                 Include(o => o.Meal).
                 Include(o => o.Order).
                 Where(o => o.OrderId == orderId);
+            ViewBag.OrderId = orderId;
             return View(order_Meal.ToList());
         }
 
