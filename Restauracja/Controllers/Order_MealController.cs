@@ -42,6 +42,15 @@ namespace Restauracja.Controllers
             return RedirectToAction("ChefIndex");
         }
 
+        public ActionResult Statistic()
+        {
+            var order_Meal = db.Order.
+                Where(o => o.MealTime != null).
+                GroupBy(o => o.Table);
+
+            return View(order_Meal.ToList());
+        }
+
         // GET: Order_Meal/Details/5
         //public ActionResult Details(int? id)
         //{

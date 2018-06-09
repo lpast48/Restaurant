@@ -50,6 +50,13 @@
                         <li>@Html.ActionLink("Zamówienia", "Index", "Orders")</li>
                     </ul>
                 }
+
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Statystyki", "Statistic", "Order_Meal")</li>
+                    </ul>
+                }
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
