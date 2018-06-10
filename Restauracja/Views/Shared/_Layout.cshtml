@@ -54,7 +54,8 @@
                 @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                 {
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Statystyki", "Statistic", "Orders")</li>
+                        <li>@Html.ActionLink("Statystyki stolików", "TimeLaps", "Orders")</li>
+                        <li>@Html.ActionLink("Statystyki potraw", "TimeLaps", "Meals")</li>
                     </ul>
                 }
                 @Html.Partial("_LoginPartial")

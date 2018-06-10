@@ -1,21 +1,18 @@
 ﻿@model List<Restauracja.Controllers.OrdersController.Statistics>
 
 @{
-    ViewBag.Title = "Statistic";
+    ViewBag.Title = "Statystyki";
 }
 
-<h2>Statistic</h2>
+<h2>Statystyki</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <td>
             Numer stolika
         </td>
         <td>
-            Wartość zamówień
+            Wartość całkowita zamówień
         </td>
         <th></th>
     </tr>
@@ -34,3 +31,6 @@
 }
 
 </table>
+<p>
+    @Html.ActionLink("Wróć", "Timelaps", null, new { @class = "btn btn-primary" })
+</p>

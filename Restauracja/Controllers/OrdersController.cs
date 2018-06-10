@@ -26,9 +26,34 @@ namespace Restauracja.Controllers
             return View(order);
         }
 
-        public ActionResult Statistic()
+        public ActionResult TimeLaps()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult TimeLaps([Bind(Include = "StartDate,EndDate")] TimeLap timeLap)
+        {
+            if (ModelState.IsValid)
+            {
+                if (timeLap.StartDate < timeLap.EndDate && timeLap.StartDate<DateTime.Now)
+                {
+                    ViewBag.Error = false;
+                    return RedirectToAction("Statistic", timeLap);
+                }
+                ViewBag.Error = true;
+                return View(timeLap);
+            }
+            return View(timeLap);
+        }
+
+        public ActionResult Statistic(TimeLap timeLap)
         {
             var test = db.Order.
+                Where(o => o.OrderTime > timeLap.StartDate).
+                Where(o => o.OrderTime < timeLap.EndDate).
                 GroupBy(t => t.Table).
                 Select(group =>new Statistics {
                     PriceSum = group.Sum(o => o.Price),
@@ -172,6 +197,19 @@ namespace Restauracja.Controllers
         {
             public int TableId { get; set; }
             public int PriceSum { get; set; }
+        }
+
+        public class TimeLap
+        {
+            [Display(Name = "Czas początku statystyk")]
+            [DataType(DataType.DateTime)]
+            [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}", ApplyFormatInEditMode = true)]
+            public System.DateTime StartDate { get; set; }
+
+            [Display(Name = "Czas końcowy statystyk")]
+            [DataType(DataType.DateTime)]
+            [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}", ApplyFormatInEditMode = true)]
+            public System.DateTime EndDate { get; set; }
         }
     }
 }
