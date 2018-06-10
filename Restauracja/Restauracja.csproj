@@ -346,7 +346,7 @@
     <Content Include="Views\Meals\ChefIndex.cshtml" />
     <Content Include="Views\Account\WaiterRegister.cshtml" />
     <Content Include="Views\Order_Meal\ChefIndex.cshtml" />
-    <Content Include="Views\Order_Meal\Statistic.cshtml" />
+    <Content Include="Views\Orders\Statistic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Restauracja.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Restauracja.Controllers
 {
@@ -40,35 +41,6 @@ namespace Restauracja.Controllers
             db.Order_Meal.Find(id).IssueTime = DateTime.Now;
             db.SaveChanges();
             return RedirectToAction("ChefIndex");
-        }
-
-        public ActionResult Statistic()
-        {
-            var order_Meal = db.Order.
-                Where(o => o.MealTime != null);
-            //GroupBy(o => o.Table).ToList();
-
-            //foreach (var item in order_Meal)
-            //{
-            //    var suma = item.Sum(o => o.Price);
-            //    var a = 1;
-            //}
-
-            var test = db.Order_Meal.
-                GroupBy(d => d.Order.Table).
-                Select(group =>
-                new Class1 { Sum = group.Sum(ZlozenieZamowienia => ZlozenieZamowienia.Order.Price), TableId = group.Key }).ToList();
-            //Order_Meal orderMeal = new Order_Meal();
-            //var test = db.Order_Meal.GroupBy(T => T.Order.Table).ToList();
-            //foreach (var item in test)
-            //{
-            //    var order_meal = item.Sum(o => o.Order.Price);
-            //    orderMeal.Order.Table = 1;
-
-            //}
-
-
-            return View(test.ToList());
         }
 
         // GET: Order_Meal/Details/5
@@ -203,13 +175,6 @@ namespace Restauracja.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        public class Class1
-        {
-            public int TableId { get; set; }
-            public int Sum { get; set; }
-
         }
     }
 }

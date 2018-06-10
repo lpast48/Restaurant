@@ -1,4 +1,4 @@
-﻿@model List<Restauracja.Controllers.Order_MealController.Class1>
+﻿@model List<Restauracja.Controllers.OrdersController.Statistics>
 
 @{
     ViewBag.Title = "Statistic";
@@ -11,6 +11,12 @@
 </p>
 <table class="table">
     <tr>
+        <td>
+            Numer stolika
+        </td>
+        <td>
+            Wartość zamówień
+        </td>
         <th></th>
     </tr>
 
@@ -20,7 +26,7 @@
             @Html.DisplayFor(modelItem => item.TableId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Sum)
+            @Html.DisplayFor(modelItem => item.PriceSum) zł
         </td>
         <td>
         </td>

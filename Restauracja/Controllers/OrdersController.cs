@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Restauracja.Models;
 using Microsoft.AspNet.Identity;
 using System.Data.Entity.Core.Common.CommandTrees;
+using System.ComponentModel.DataAnnotations;
 
 namespace Restauracja.Controllers
 {
@@ -23,6 +24,17 @@ namespace Restauracja.Controllers
                 Where(o => o.MealTime == null).
                 OrderBy(o=>o.Table).ToList();
             return View(order);
+        }
+
+        public ActionResult Statistic()
+        {
+            var test = db.Order.
+                GroupBy(t => t.Table).
+                Select(group =>new Statistics {
+                    PriceSum = group.Sum(o => o.Price),
+                    TableId = group.Key }).ToList();
+
+            return View(test);
         }
 
         // GET: Orders/Details/5
@@ -154,6 +166,12 @@ namespace Restauracja.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public class Statistics
+        {
+            public int TableId { get; set; }
+            public int PriceSum { get; set; }
         }
     }
 }
