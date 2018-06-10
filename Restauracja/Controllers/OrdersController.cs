@@ -51,6 +51,9 @@ namespace Restauracja.Controllers
 
         public ActionResult Statistic(TimeLap timeLap)
         {
+            timeLap.StartDate = timeLap.StartDate.AddDays(-1);
+            timeLap.EndDate = timeLap.EndDate.AddDays(1);
+
             var test = db.Order.
                 Where(o => o.OrderTime > timeLap.StartDate).
                 Where(o => o.OrderTime < timeLap.EndDate).

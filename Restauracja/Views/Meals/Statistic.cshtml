@@ -1,0 +1,36 @@
+﻿@model List<Restauracja.Controllers.MealsController.Statistics>
+
+@{
+    ViewBag.Title = "Statystyki";
+}
+
+<h2>Statystyki</h2>
+
+<table class="table">
+    <tr>
+        <td>
+            Nazwa potrawy
+        </td>
+        <td>
+            Ilość wydanych sztuk
+        </td>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MealName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MealCount)
+        </td>
+        <td>
+        </td>
+    </tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("Wróć", "Timelaps", null, new { @class = "btn btn-primary" })
+</p>

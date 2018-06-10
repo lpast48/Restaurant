@@ -348,6 +348,8 @@
     <Content Include="Views\Order_Meal\ChefIndex.cshtml" />
     <Content Include="Views\Orders\Statistic.cshtml" />
     <Content Include="Views\Orders\TimeLaps.cshtml" />
+    <Content Include="Views\Meals\TimeLaps.cshtml" />
+    <Content Include="Views\Meals\Statistic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
