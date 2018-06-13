@@ -1,0 +1,15 @@
+Projekt serwisu umo¿liwiaj¹cego obs³ugê restauracji wykonany jako zaliczenie przedmiotu
+"nowoczesne technologie programistyczne.
+Zaimplementowane funkcje:
+-CRUD dla spisu potraw (konta kucharza i szefa)
+-dodawanie nowych zamówieñ oraz dodawanie do nich potraw (kelner)
+-tworzenie kolejki potraw do przyrz¹dzenia (dla kucharza)
+-przegl¹danie statystyk (szef)
+-dodawanie nowych pracowników (szef)
+
+Utworzone konta:
+-kelner  -Waitress@ASP.pl -has³o:12345678
+-kucharz -Chef@ASP.pl     -has³o:12345678
+-szef    -Admin@ASP.pl    -has³o:12345678
+
+W przypadku problemów z uruchomieniem nale¿y zaktualizowaæ bazê danych.
